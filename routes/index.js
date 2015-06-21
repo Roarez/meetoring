@@ -5,8 +5,6 @@ var app = require('../app');
 var Meeting = require('../meeting');
 var setupRealtime = require('../realtime');
 
-var meetings = {}; // replace with mongo db
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index');
@@ -14,21 +12,26 @@ router.get('/', function(req, res, next) {
 
 router.get('/:meetingId' , function(req, res, next) {
     var id = req.params.meetingId;
-    if (!meetings.hasOwnProperty(id)) { // check db for matches
-      next();
-      return;
-    }
-    res.render('meeting', { meet: meetings[id].clientModel(), clientID: req.cookies.id });
+    Meeting.read(id, function(err, meeting) {
+        if(err) throw err;
+        if (!meeting) { 
+            next();
+            return;
+        }
+        console.log(meeting);
+        res.render('meeting', { meet: meeting.clientModel(), clientID: req.cookies.id });
+    });
 });
 
 router.post('/', function(req, res, next){
 
     var meeting = new Meeting(req.body.meetingName);
-    meetings[meeting.id] = meeting;
-
-    setupRealtime(app, meeting);
-
-    res.redirect('/'+meeting.id);
+    meeting.save(function(err) {
+        if(err) throw err;
+        console.log(2,'pass');
+        setupRealtime(app, meeting);
+        res.redirect('/'+meeting.id);
+    });
 });
 
 module.exports = router;
