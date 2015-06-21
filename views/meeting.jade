@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  div(id="main-content")
+    h3 Meeting 
+      strong=meet.name
+    div(class="attendeesCount")
+    div(id="total") €
+      span(id="meetingTotalValue")=meet.total.toFixed(2)
+    div(class="action-area")
+      div(id="form-join" class="form-inline hidden")
+        h5(id="join-this-meeting-question") Join this meeting?
+        span
+          input(type="text" autocomplete="off" placeholder="Price per Hour..." id="rate" title="What is the cost of an hour of your time?")
+        span
+          a(id="join" class="btn btn-inverse" disabled="disabled") Join
+
+      div(id="form-leave" class="form-inline hidden")
+        span
+          a(id="leave" class="btn btn-inverse") Leave
+
+      div(id="form-share" class="form-inline hidden")
+        h5(id="join-this-meeting-question") Invite others to join the monitoring
+        span
+          input(type="text" readonly="readonly" id="share-url")
+  div
+    h4 How does this work?
+    p Its simple! You start by introducing your cost per hour and joining the meeting and the meeter shows how much money you are spending since the start of the meeting.
+    p You can and should invite other meeting attendees by sharing the URL with them so they can also join with their cost per hour.
+    p Meetoring shows a real-time updated meeter for the total cost of the meeting taking into account the time each attendee joins and leaves.
+  input(id="clientID" value=clientID)
+  input(id="meet" value=JSON.stringify(meet))
+  script(src="/javascripts/counter.js")
+  script(src="/javascripts/main.js")

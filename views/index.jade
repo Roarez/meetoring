@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  div(id="main-content")
+    h1(id="the-title")
+      span(id="logo-m") €
+      span(id="rest-of-the-title" class="hidden-phone") eetoring
+    h2(id="smaller-title") Meetoring
+    p(id="punchline") Monitor your meetings
+    p
+      form(method="POST" action="/" class="form-inline row" id="start-monitoring-form")
+        span
+          input(type="text" name="meetingName" placeholder="Meeting name..." class="" id="create-meeting-name")
+        span
+          input(type="submit" value="Start" class="btn btn-inverse" id="create-meeting-start")
+
+  blockquote(class="pull-right")
+    p "If it only takes seven minutes to accomplish a meeting's goal, then that's all the time you should spend"
+    p "When you think about it, the true cost of meetings is staggering"
+    small Jason Fried & David Heinemeier Hansson
+
+  div
+    h4 So what is this all about?
+    p Most people agree that meetings tend to be underproductive. Many individuals fail to prepare properly for a meeting and usually there's always some douche asking stupid questions.
+    p The main point is that 
+      strong meetings take more time than is needed
+      , and an extra half hour wasted in a meeting of ten is actually five hours lost. And meetings are the worst kind of interruptions because they make people lose momentum at work.
+    p Unfortunately meetings are a necessary evil, 
+      strong Meetoring is here to help you minimize that evil by monitoring your meetings.
+
+  script(src="/javascripts/createmeet.js")

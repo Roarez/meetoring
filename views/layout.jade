@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
+    script(src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js")
+    script(src="/socket.io/socket.io.js")
+    script(src="/javascripts/lib/jquery-1.7.2.min.js")
+    script(src="/javascripts/lib/jquery-ui.min-1.8.6.js")
+
+    div(id="main" class="wrapper clearfix container-fluid")
+      block content
+
+    script(src="/javascripts/lib/lodash.js")
+    script(src="/javascripts/lib/bootstrap.js")
+    script(src="/javascripts/lib/h5bp.js")
