@@ -18,7 +18,6 @@ router.get('/:meetingId' , function(req, res, next) {
             next();
             return;
         }
-        console.log(meeting);
         res.render('meeting', { meet: meeting.clientModel(), clientID: req.cookies.id });
     });
 });
@@ -28,7 +27,6 @@ router.post('/', function(req, res, next){
     var meeting = new Meeting(req.body.meetingName);
     meeting.save(function(err) {
         if(err) throw err;
-        console.log(2,'pass');
         setupRealtime(app, meeting);
         res.redirect('/'+meeting.id);
     });
